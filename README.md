@@ -15,7 +15,7 @@ Till then, please just ask me in the issues if anything is unclear
 
 ---
 
-## Usage needs update see code or cmd line
+## Usage
 ```
 usage: DQN.py [-h] [--gpu GPU] [--load LOAD] [--task {play,eval,train}]
               [--files FILES [FILES ...]] [--saveGif] [--saveVideo]
@@ -28,7 +28,9 @@ optional arguments:
   --task {play,eval,train}
                         task to perform. Must load a pretrained model if task
                         is "play" or "eval"
- 
+  --test_all_acc        use this flag when using eval mode to generate accuracies for all saved 
+                        training checkpoints, not just the last one. In the load flag specify the path to the checkpoints file not to an individual model checkpoint. Results are saved as a tensorboard log file
+  --algo                either 'DQN', 'Double', 'Dueling' or 'DuelingDouble', default='DQN'
   --files FILES [FILES ...]
                         Filepath to the text file that comtains list of
                         images. Each line of this file is a full path to an
@@ -39,6 +41,14 @@ optional arguments:
   --logDir LOGDIR       store logs in this directory during training
   --name NAME           name of current experiment for logs
   --agents AGENTS       number of agents to be trained simulteniously 
+  --coords_init         Path to the text file that contains the paths to the init coords
+                        Each line is a full path to a .npy init coord file. 
+                        The ordering is exactly the same as in the argument provided to --files 
+                        When using tum_box directly specify path of initial coordinates dont put it in a txt file
+  --reward_strategy     Which reward strategy you want? 1 is simple, 2 is line based, 3 is      
+                        agent based. Default = 1
+  --load_config         specify the path of a config file relative to the configDir 
+                        (default:configs/)
 ```
 
 ### Train
